@@ -9,7 +9,7 @@ package pers.darren.designpattern.abstractfactory;
 class ShapeFactory extends AbstractFactoryAdapter {
 
     @Override
-    public Shape getShape(final ShapeType shapeType) {
+    Shape getShape(final ShapeType shapeType) {
         if (shapeType == null) {
             return new NullShape();
         }
