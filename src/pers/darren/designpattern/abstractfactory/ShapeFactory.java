@@ -1,21 +1,15 @@
-package pers.darren.designpattern.factory;
+package pers.darren.designpattern.abstractfactory;
 
 /**
  * 图形工厂
  *
  * @CreatedBy Darren Luo
- * @CreatedTime Sep 23, 2020 2:54:33 PM
+ * @CreatedTime Sep 23, 2020 4:58:18 PM
  */
-class ShapeFactory {
-    /**
-     * 生产图形对象
-     *
-     * @CreatedBy Darren Luo
-     * @CreatedTime Sep 23, 2020 3:49:33 PM
-     * @param shapeType 图形类型
-     * @return
-     */
-    Shape getShape(final ShapeType shapeType) {
+class ShapeFactory extends AbstractFactoryAdapter {
+
+    @Override
+    public Shape getShape(final ShapeType shapeType) {
         if (shapeType == null) {
             return new NullShape();
         }

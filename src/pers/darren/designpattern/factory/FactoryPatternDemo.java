@@ -10,7 +10,7 @@ import static pers.darren.designpattern.factory.ShapeType.SQUARE;
  * @CreatedBy Darren Luo
  * @CreatedTime Sep 23, 2020 3:00:42 PM
  */
-public class FactoryPatternDemo {
+class FactoryPatternDemo {
 
     public static void main(final String[] args) {
         final ShapeFactory shapeFactory = new ShapeFactory();

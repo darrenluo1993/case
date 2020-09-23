@@ -1,4 +1,4 @@
-package pers.darren.designpattern.factory;
+package pers.darren.designpattern.abstractfactory;
 
 /**
  * 图形类型枚举
@@ -10,15 +10,15 @@ enum ShapeType {
     /**
      * 圆
      */
-    CIRCLE("pers.darren.designpattern.factory.Circle"),
+    CIRCLE("pers.darren.designpattern.abstractfactory.Circle"),
     /**
      * 矩形
      */
-    RECTANGLE("pers.darren.designpattern.factory.Rectangle"),
+    RECTANGLE("pers.darren.designpattern.abstractfactory.Rectangle"),
     /**
      * 正方形
      */
-    SQUARE("pers.darren.designpattern.factory.Square");
+    SQUARE("pers.darren.designpattern.abstractfactory.Square");
 
     private String className;
 

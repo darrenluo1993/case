@@ -1,4 +1,4 @@
-package pers.darren.designpattern.factory;
+package pers.darren.designpattern.abstractfactory;
 
 /**
  * 图形空对象
