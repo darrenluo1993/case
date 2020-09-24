@@ -1,16 +1,16 @@
-package pers.darren.designpattern.factory;
+package pers.darren.designpattern.simplefactory;
 
-import static pers.darren.designpattern.factory.ShapeType.CIRCLE;
-import static pers.darren.designpattern.factory.ShapeType.RECTANGLE;
-import static pers.darren.designpattern.factory.ShapeType.SQUARE;
+import static pers.darren.designpattern.simplefactory.ShapeType.CIRCLE;
+import static pers.darren.designpattern.simplefactory.ShapeType.RECTANGLE;
+import static pers.darren.designpattern.simplefactory.ShapeType.SQUARE;
 
 /**
- * 工厂模式示例
+ * 简单工厂模式示例
  *
  * @CreatedBy Darren Luo
  * @CreatedTime Sep 23, 2020 3:00:42 PM
  */
-class FactoryPatternDemo {
+class SimpleFactoryPatternDemo {
 
     public static void main(final String[] args) {
         final ShapeFactory shapeFactory = new ShapeFactory();
