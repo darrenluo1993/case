@@ -27,7 +27,12 @@ class AbstractFactoryPatternDemo {
         lenovoFactory.createMouse("有线", "黑色", "3个", "200").click();
         lenovoFactory.createMouse("无线", "红色", "6个", "500").click();
         lenovoFactory.createMouse("有线", "七彩", "8个", "700").click();
+        // 生产联想键盘，并操作按键按下
+        lenovoFactory.createKeyboard("有线", "白色", "普通", "有").press();
+        lenovoFactory.createKeyboard("无线", "黑色", "机械", "无").press();
+        lenovoFactory.createKeyboard("无线", "灰色", "普通", "有").press();
         System.out.println();
+
         // 创建华为计算机工厂
         final ComputerFactory huaweiFactory = createFactory(HUAWEI);
         // 生产华为笔记本电脑，并进行介绍
@@ -40,7 +45,12 @@ class AbstractFactoryPatternDemo {
         huaweiFactory.createMouse("有线", "紫色", "3个", "200").click();
         huaweiFactory.createMouse("有线", "黑色", "6个", "300").click();
         huaweiFactory.createMouse("无线", "褐色", "8个", "650").click();
+        // 生产华为键盘，并操作按键按下
+        huaweiFactory.createKeyboard("无线", "黑色", "机械", "无").press();
+        huaweiFactory.createKeyboard("无线", "紫色", "机械", "无").press();
+        huaweiFactory.createKeyboard("有线", "灰色", "普通", "有").press();
         System.out.println();
+
         // 创建戴尔计算机工厂
         final ComputerFactory dellFactory = createFactory(DELL);
         // 生产戴尔笔记本电脑，并进行介绍
@@ -53,7 +63,12 @@ class AbstractFactoryPatternDemo {
         dellFactory.createMouse("有线", "七彩", "3个", "270").click();
         dellFactory.createMouse("无线", "红色", "4个", "300").click();
         dellFactory.createMouse("无线", "灰色", "6个", "550").click();
+        // 生产戴尔键盘，并操作按键按下
+        dellFactory.createKeyboard("无线", "紫色", "机械", "无").press();
+        dellFactory.createKeyboard("有线", "灰色", "普通", "有").press();
+        dellFactory.createKeyboard("无线", "黑色", "机械", "无").press();
         System.out.println();
+
         // 创建华硕计算机工厂
         final ComputerFactory asusFactory = createFactory(ASUS);
         // 生产华硕笔记本电脑，并进行介绍
@@ -66,5 +81,9 @@ class AbstractFactoryPatternDemo {
         asusFactory.createMouse("无线", "白色", "4个", "270").click();
         asusFactory.createMouse("无线", "紫色", "5个", "300").click();
         asusFactory.createMouse("有线", "绿色", "6个", "550").click();
+        // 生产华硕键盘，并操作按键按下
+        asusFactory.createKeyboard("有线", "紫色", "普通", "有").press();
+        asusFactory.createKeyboard("无线", "七彩", "普通", "无").press();
+        asusFactory.createKeyboard("无线", "绿色", "机械", "有").press();
     }
 }

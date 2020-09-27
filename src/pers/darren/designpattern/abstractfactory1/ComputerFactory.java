@@ -32,4 +32,17 @@ abstract class ComputerFactory {
      * @return
      */
     abstract Mouse createMouse(String wireless, String color, String keyNum, String price);
+
+    /**
+     * 生产键盘
+     *
+     * @CreatedBy Darren Luo
+     * @CreatedTime Sep 27, 2020 11:47:33 AM
+     * @param wireless   有线/无线
+     * @param color      颜色
+     * @param mechanical 机械/普通
+     * @param keypad     有无小键盘
+     * @return
+     */
+    abstract Keyboard createKeyboard(String wireless, String color, String mechanical, String keypad);
 }

@@ -17,4 +17,9 @@ class AsusFactory extends ComputerFactory {
     Mouse createMouse(final String wireless, final String color, final String keyNum, final String price) {
         return new AsusMouse(wireless, color, keyNum, price);
     }
+
+    @Override
+    Keyboard createKeyboard(final String wireless, final String color, final String mechanical, final String keypad) {
+        return new AsusKeyboard(wireless, color, mechanical, keypad);
+    }
 }

@@ -17,4 +17,9 @@ class LenovoFactory extends ComputerFactory {
     Mouse createMouse(final String wireless, final String color, final String keyNum, final String price) {
         return new LenovoMouse(wireless, color, keyNum, price);
     }
+
+    @Override
+    Keyboard createKeyboard(final String wireless, final String color, final String mechanical, final String keypad) {
+        return new LenovoKeyboard(wireless, color, mechanical, keypad);
+    }
 }
