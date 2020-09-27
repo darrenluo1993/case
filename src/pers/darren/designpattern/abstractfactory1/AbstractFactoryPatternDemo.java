@@ -1,6 +1,7 @@
 package pers.darren.designpattern.abstractfactory1;
 
 import static pers.darren.designpattern.abstractfactory1.FactoryProducer.createFactory;
+import static pers.darren.designpattern.abstractfactory1.FactoryType.ASUS;
 import static pers.darren.designpattern.abstractfactory1.FactoryType.DELL;
 import static pers.darren.designpattern.abstractfactory1.FactoryType.HUAWEI;
 import static pers.darren.designpattern.abstractfactory1.FactoryType.LENOVO;
@@ -52,5 +53,18 @@ class AbstractFactoryPatternDemo {
         dellFactory.createMouse("有线", "七彩", "3个", "270").click();
         dellFactory.createMouse("无线", "红色", "4个", "300").click();
         dellFactory.createMouse("无线", "灰色", "6个", "550").click();
+        System.out.println();
+        // 创建戴尔计算机工厂
+        final ComputerFactory asusFactory = createFactory(ASUS);
+        // 生产华硕笔记本电脑，并进行介绍
+        asusFactory.createLaptop("英特尔 i9 6代", "英伟达 GTX 750", "2GB", "200GB").introduce();
+        asusFactory.createLaptop("英特尔 i9 7代", "英伟达 GTX 850", "4GB", "500GB").introduce();
+        asusFactory.createLaptop("英特尔 i9 8代", "英伟达 GTX 950", "8GB", "1TB").introduce();
+        asusFactory.createLaptop("英特尔 i9 9代", "英伟达 GTX 1050", "16GB", "2TB").introduce();
+        asusFactory.createLaptop("英特尔 i9 10代", "英伟达 GTX 1150", "32GB", "3TB").introduce();
+        // 生产华硕鼠标，并操作鼠标点击
+        asusFactory.createMouse("无线", "白色", "4个", "270").click();
+        asusFactory.createMouse("无线", "紫色", "5个", "300").click();
+        asusFactory.createMouse("有线", "绿色", "6个", "550").click();
     }
 }

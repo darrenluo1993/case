@@ -18,7 +18,11 @@ enum FactoryType {
     /**
      * 戴尔计算机工厂
      */
-    DELL("pers.darren.designpattern.abstractfactory1.DellFactory");
+    DELL("pers.darren.designpattern.abstractfactory1.DellFactory"),
+    /**
+     * 华硕计算机工厂
+     */
+    ASUS("pers.darren.designpattern.abstractfactory1.AsusFactory");
 
     private String className;
 
