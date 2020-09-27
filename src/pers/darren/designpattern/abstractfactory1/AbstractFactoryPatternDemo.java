@@ -54,7 +54,7 @@ class AbstractFactoryPatternDemo {
         dellFactory.createMouse("无线", "红色", "4个", "300").click();
         dellFactory.createMouse("无线", "灰色", "6个", "550").click();
         System.out.println();
-        // 创建戴尔计算机工厂
+        // 创建华硕计算机工厂
         final ComputerFactory asusFactory = createFactory(ASUS);
         // 生产华硕笔记本电脑，并进行介绍
         asusFactory.createLaptop("英特尔 i9 6代", "英伟达 GTX 750", "2GB", "200GB").introduce();
