@@ -14,6 +14,12 @@ import java.util.concurrent.CountDownLatch;
 public class Singleton {
 
     private Singleton() {
+        try {
+            // 模拟对象实例化过程需要1秒钟
+            Thread.sleep(1000);
+        } catch (final InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void printInfo() {
