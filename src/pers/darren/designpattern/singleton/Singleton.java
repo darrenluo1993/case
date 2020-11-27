@@ -114,7 +114,7 @@ public class Singleton {
         return singleton2;
     }
 
-    private static final class SingletonHodler {
+    private static final class SingletonHolder {
         private static final Singleton SINGLETON = new Singleton();
     }
 
@@ -136,7 +136,7 @@ public class Singleton {
      * @CreatedTime Nov 27, 2020 4:11:38 PM
      */
     public static final Singleton getInstance5() {
-        return SingletonHodler.SINGLETON;
+        return SingletonHolder.SINGLETON;
     }
 
     public static void main(final String[] args) throws Exception {
