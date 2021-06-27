@@ -1,4 +1,4 @@
-package pers.darren.classloader;
+package pers.darren.classloader.demo1;
 
 public class Parent {
 
