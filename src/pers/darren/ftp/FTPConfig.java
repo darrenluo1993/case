@@ -1,4 +1,4 @@
-package pers.darren.ftp.apache_commons_net;
+package pers.darren.ftp;
 
 /**
  * FTP配置

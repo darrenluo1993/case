@@ -1,13 +1,13 @@
 package pers.darren.ftp.apache_commons_net;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.CURRENT_DIR;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.FILE_DELAY_TIME;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.FTP_ACCOUNT;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.FTP_HOSTNAME;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.FTP_PASSWORD;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.FTP_PORT;
-import static pers.darren.ftp.apache_commons_net.FTPConfig.PARENT_DIR;
+import static pers.darren.ftp.FTPConfig.CURRENT_DIR;
+import static pers.darren.ftp.FTPConfig.FILE_DELAY_TIME;
+import static pers.darren.ftp.FTPConfig.FTP_ACCOUNT;
+import static pers.darren.ftp.FTPConfig.FTP_HOSTNAME;
+import static pers.darren.ftp.FTPConfig.FTP_PASSWORD;
+import static pers.darren.ftp.FTPConfig.FTP_PORT;
+import static pers.darren.ftp.FTPConfig.PARENT_DIR;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -53,7 +53,7 @@ public final class FTPUtils {
      */
     private static FTPClient getFTPClient() {
         try {
-            final FTPClient client = new FTPClient();
+            final var client = new FTPClient();
             if (StringUtils.isEmpty(FTP_PORT)) {
                 client.connect(FTP_HOSTNAME);
             } else {
@@ -91,7 +91,7 @@ public final class FTPUtils {
     public static boolean downloadFTPFile(final String originDirPath, final String originFileName, final String targetDirPath) {
         logger.info(String.format("方法参数[originDirPath: %s, originFileName: %s, targetDirPath: %s]", originDirPath, originFileName, targetDirPath));
         try {
-            final FTPClient client = getFTPClient();
+            final var client = getFTPClient();
             if (client != null && client.isAvailable()) {
                 if (client.changeWorkingDirectory(originDirPath)) {
                     return retrieveAndDeleteFile(client, originFileName, targetDirPath);
@@ -120,7 +120,7 @@ public final class FTPUtils {
             // 如果目标目录不存在，则创建
             new File(targetDirPath).mkdirs();
             // 构建目标文件路径
-            final File targetFile = new File(targetDirPath, originFileName);
+            final var targetFile = new File(targetDirPath, originFileName);
             logger.info("目标文件路径>>>" + targetFile.getPath());
             outputStream = new BufferedOutputStream(new FileOutputStream(targetFile));
 
@@ -167,9 +167,9 @@ public final class FTPUtils {
     public static boolean downloadFTPDirectory(final String originDirPath, String targetDirPath) {
         logger.info(String.format("方法参数[originDirPath: %s, targetDirPath: %s]", originDirPath, targetDirPath));
         try {
-            final FTPClient client = getFTPClient();
+            final var client = getFTPClient();
             if (client != null && client.isAvailable()) {
-                final FTPFile[] originFileArr = client.listFiles(originDirPath, new FTPFileFilterImpl());
+                final var originFileArr = client.listFiles(originDirPath, new FTPFileFilterImpl());
                 if (ArrayUtils.isNotEmpty(originFileArr)) {
                     targetDirPath += File.separator + new File(originDirPath).getName();
                     logger.info("目标目录路径>>>" + targetDirPath);
@@ -177,7 +177,7 @@ public final class FTPUtils {
                     new File(targetDirPath).mkdirs();
 
                     for (final FTPFile originFile : originFileArr) {
-                        final String originFileName = originFile.getName();
+                        final var originFileName = originFile.getName();
                         if (originFile.isFile()) {
                             logger.info("源文件名称>>>" + originFileName);
                             downloadFTPFile(originDirPath, originFileName, targetDirPath);
@@ -217,17 +217,17 @@ public final class FTPUtils {
         @Override
         public boolean accept(final FTPFile paramFTPFile) {
             // 当前文件是否目录
-            final boolean isDir = paramFTPFile.isDirectory();
+            final var isDir = paramFTPFile.isDirectory();
             if (isDir) {
-                final String fileName = paramFTPFile.getName();
+                final var fileName = paramFTPFile.getName();
                 // 当前文件是目录，且不是当前目录或上级目录，ACCEPT
                 return !CURRENT_DIR.equals(fileName) && !PARENT_DIR.equals(fileName);
             }
             // 当前文件是否文件
-            final boolean isFile = paramFTPFile.isFile();
+            final var isFile = paramFTPFile.isFile();
             if (isFile) {
-                final long currentTime = System.currentTimeMillis();
-                final long fileModifyTime = paramFTPFile.getTimestamp().getTimeInMillis();
+                final var currentTime = System.currentTimeMillis();
+                final var fileModifyTime = paramFTPFile.getTimestamp().getTimeInMillis();
                 // 当前文件是文件，且最后修改时间是90秒之前，ACCEPT
                 return currentTime - fileModifyTime >= gainDelayMillis();
             }
