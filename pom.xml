@@ -12,8 +12,13 @@
         <hutool.version>5.4.3</hutool.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <fastjson.version>1.2.73</fastjson.version>
+        <log4j.core.version>2.14.1</log4j.core.version>
+        <commons.io.version>2.10.0</commons.io.version>
+        <commons.net.version>3.8.0</commons.net.version>
         <commons.codec.version>1.15</commons.codec.version>
         <tencentcloud.version>3.1.190</tencentcloud.version>
+        <commons.lang3.version>3.12.0</commons.lang3.version>
+        <io.lettuce.version>6.1.2.RELEASE</io.lettuce.version>
     </properties>
 
     <dependencies>
@@ -33,9 +38,24 @@
             <version>${fastjson.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons.net.version}</version>
+        </dependency>
+        <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons.codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tencentcloudapi</groupId>
@@ -45,7 +65,12 @@
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
-            <version>6.1.2.RELEASE</version>
+            <version>${io.lettuce.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.core.version}</version>
         </dependency>
     </dependencies>
 
