@@ -34,7 +34,7 @@ public final class SFTPUtils {
      * 工具类，不允许实例化
      *
      * @CreatedBy Darren Luo
-     * @CreatedTime ${date} ${time} ${tags}
+     * @CreatedTime Jul 8, 2021 9:35:39 AM
      */
     private SFTPUtils() {
         throw new UnsupportedOperationException("This is a utility class!");
