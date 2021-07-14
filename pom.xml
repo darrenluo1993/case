@@ -20,6 +20,7 @@
         <tencentcloud.version>3.1.190</tencentcloud.version>
         <commons.lang3.version>3.12.0</commons.lang3.version>
         <io.lettuce.version>6.1.2.RELEASE</io.lettuce.version>
+        <rabbitmq.client.version>5.13.0</rabbitmq.client.version>
     </properties>
 
     <dependencies>
@@ -77,6 +78,11 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>${jcraft.jsch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbitmq.client.version}</version>
         </dependency>
     </dependencies>
 
