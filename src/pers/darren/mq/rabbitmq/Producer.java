@@ -20,6 +20,7 @@ public class Producer {
         factory.setPassword("admin");
         // 设置 RabbitMQ 地址
         factory.setHost("localhost");
+        factory.setPort(5671);
         // 建立到代理服务器到连接
         final var connection = factory.newConnection();
         // 获得信道

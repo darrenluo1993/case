@@ -22,6 +22,7 @@ public class Consumer {
         factory.setUsername("admin");
         factory.setPassword("admin");
         factory.setHost("localhost");
+        factory.setPort(5671);
         // 建立到代理服务器到连接
         final var connection = factory.newConnection();
         // 获得信道
