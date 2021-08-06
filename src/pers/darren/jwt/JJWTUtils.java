@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 
 /**
@@ -21,11 +22,19 @@ public final class JJWTUtils {
 
     private static final byte[] secretKey = encodeBase64("my secret key".getBytes());
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws Exception {
         var jwt = createJWTWithSign();
         System.out.println("JWT with signature>>>" + jwt);
         System.out.println("=======================================================");
-        System.out.println("JWT Claims with signature>>>" + parseJWTWithSign(jwt));
+        // 模拟JWT过期场景，JWT的有效时间是10秒，使执行线程睡眠12秒以保证JWT过期
+        Thread.sleep(12_000);
+        try {
+            // 解析使用签名算法的JWT
+            System.out.println("JWT Claims with signature>>>" + parseJWTWithSign(jwt));
+        } catch (final ExpiredJwtException e) {
+            // 捕获到JWT已过期异常，从异常对象中获取Claims
+            System.out.println("JWT Claims from exception>>>" + e.getClaims());
+        }
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         jwt = createJWTWithoutSign();
         System.out.println("JWT without signature>>>" + jwt);
