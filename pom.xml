@@ -12,6 +12,7 @@
         <hutool.version>5.4.3</hutool.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <fastjson.version>1.2.73</fastjson.version>
+        <auth0.jwt.version>3.18.1</auth0.jwt.version>
         <spring.web.version>5.3.9</spring.web.version>
         <log4j.core.version>2.14.1</log4j.core.version>
         <commons.io.version>2.10.0</commons.io.version>
@@ -91,6 +92,11 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${io.jsonwebtoken.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${auth0.jwt.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
