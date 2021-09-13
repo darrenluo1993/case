@@ -20,6 +20,7 @@
         <jcraft.jsch.version>0.1.55</jcraft.jsch.version>
         <commons.codec.version>1.15</commons.codec.version>
         <tencentcloud.version>3.1.190</tencentcloud.version>
+        <activemq.core.version>5.7.0</activemq.core.version>
         <commons.lang3.version>3.12.0</commons.lang3.version>
         <io.lettuce.version>6.1.2.RELEASE</io.lettuce.version>
         <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
@@ -87,6 +88,11 @@
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>${rabbitmq.client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>${activemq.core.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
