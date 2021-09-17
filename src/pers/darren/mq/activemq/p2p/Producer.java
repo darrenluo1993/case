@@ -1,14 +1,12 @@
 package pers.darren.mq.activemq.p2p;
 
 import static javax.jms.DeliveryMode.NON_PERSISTENT;
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 import static org.apache.activemq.ActiveMQConnectionFactory.DEFAULT_BROKER_BIND_URL;
-import static org.apache.activemq.ActiveMQConnectionFactory.DEFAULT_PASSWORD;
-import static org.apache.activemq.ActiveMQConnectionFactory.DEFAULT_USER;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -33,11 +31,10 @@ public class Producer {
      * </pre>
      */
     public static void main(final String[] args) throws JMSException {
-        final ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(DEFAULT_USER, DEFAULT_PASSWORD,
-                DEFAULT_BROKER_BIND_URL);
+        final ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(DEFAULT_BROKER_BIND_URL);
         final var connection = connectionFactory.createConnection();
         connection.start();
-        final var session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        final var session = connection.createSession(false, AUTO_ACKNOWLEDGE);
         final Destination destination = session.createQueue("queue");
         final var producer = session.createProducer(destination);
         producer.setDeliveryMode(NON_PERSISTENT);
