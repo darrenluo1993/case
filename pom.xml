@@ -14,7 +14,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <auth0.jwt.version>3.18.1</auth0.jwt.version>
         <spring.web.version>5.3.9</spring.web.version>
-        <log4j.core.version>2.15.0</log4j.core.version>
+        <log4j.core.version>2.16.0</log4j.core.version>
         <commons.io.version>2.10.0</commons.io.version>
         <commons.net.version>3.8.0</commons.net.version>
         <jcraft.jsch.version>0.1.55</jcraft.jsch.version>
