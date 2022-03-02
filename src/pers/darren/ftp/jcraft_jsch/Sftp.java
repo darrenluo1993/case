@@ -66,7 +66,7 @@ public class Sftp{
             final var in=System.in;
             final var out=System.out;
 
-            final var<String> cmds=new java.util.Vector<String>();
+            final var cmds=new java.util.Vector<String>();
             final var buf=new byte[1024];
             int i;
             String str;
