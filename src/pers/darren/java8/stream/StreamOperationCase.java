@@ -21,9 +21,15 @@ import java.util.stream.Stream;
  * <p>
  * 参考文章：https://blog.csdn.net/mu_wind/article/details/109516995
  */
-public class StreamOperationCase {
+public final class StreamOperationCase {
 
+    private StreamOperationCase() {
+        throw new UnsupportedOperationException("This is an utility class!");
+    }
+
+    // 个税起征点
     private static final Integer point = 5000;
+    // 员工信息列表
     private static final List<Person> personList = new ArrayList<>();
 
     static {
@@ -49,7 +55,9 @@ public class StreamOperationCase {
         // joining();
         // reducing();
         // sorted();
-        concatDistinctLimitSkip();
+        // concatDistinctLimitSkip();
+        // dropWhileTakeWhile();
+        peek();
     }
 
     /**
@@ -143,7 +151,7 @@ public class StreamOperationCase {
     }
 
     /**
-     * stream的聚合（max/min/count)
+     * stream的聚合(max/min/count)
      * max、min、count这些字眼你一定不陌生，没错，在mysql中我们常用它们进行数据统计。
      * Java stream中也引入了这些概念和用法，极大地方便了我们对集合、数组的数据统计工作。
      *
@@ -210,18 +218,21 @@ public class StreamOperationCase {
             newPerson.setSalary(person.getSalary() + 1000);
             return newPerson;
         }).collect(Collectors.toList());
-        personList.forEach(person -> System.out.println("原始数据：" + person.toString()));
+        personList.forEach(person -> System.out.println("不改变原来员工集合的方式-原始数据：" + person.toString()));
+        personListNew.forEach(person -> System.out.println("不改变原来员工集合的方式-改动后数据：" + person.toString()));
         System.out.println("---------------------------------------------");
-        personListNew.forEach(person -> System.out.println("改动后数据：" + person.toString()));
-        System.out.println("---------------------------------------------");
-        // 改变原来员工集合的方式
+        // 改变原来员工集合的方式1
         personListNew = personList.stream().map(person -> {
             person.setSalary(person.getSalary() + 1000);
             return person;
         }).collect(Collectors.toList());
-        personList.forEach(person -> System.out.println("原始数据：" + person.toString()));
+        personList.forEach(person -> System.out.println("改变原来员工集合的方式1-原始数据：" + person.toString()));
+        personListNew.forEach(person -> System.out.println("改变原来员工集合的方式1-改动后数据：" + person.toString()));
         System.out.println("---------------------------------------------");
-        personListNew.forEach(person -> System.out.println("改动后数据：" + person.toString()));
+        // 改变原来员工集合的方式2
+        personListNew = personList.stream().peek(person -> person.setSalary(person.getSalary() + 1000)).collect(Collectors.toList());
+        personList.forEach(person -> System.out.println("改变原来员工集合的方式2-原始数据：" + person.toString()));
+        personListNew.forEach(person -> System.out.println("改变原来员工集合的方式2-改动后数据：" + person.toString()));
         System.out.println("---------------------------------------------");
         // 案例三：将两个字符数组合并成一个新的字符数组。
         stringList = Arrays.asList("a-b-c-d", "1-3-5-7");
@@ -502,5 +513,49 @@ public class StreamOperationCase {
         // skip跳过第1个员工，再limit取3个员工
         List<Person> newPersonList = personList.stream().skip(1).limit(3).collect(Collectors.toList());
         System.out.println("skip跳过第1个员工，再limit取3个员工：" + newPersonList);
+    }
+
+    /**
+     * 删除/保留请在此处输入该方法的描述(dropWhile/takeWhile)
+     * dropWhile：从原始流起始位置开始删除满足给定条件的元素，直到遇到第一个不满足给定条件的元素。
+     * takeWhile：从原始流起始位置开始保留满足给定条件的元素，直到遇到第一个不满足给定条件的元素。
+     *
+     * @CreatedBy Darren Luo
+     * @CreatedTime 3/3/22 5:02 PM
+     */
+    private static void dropWhileTakeWhile() {
+        List<Integer> list = Arrays.asList(3, 3, 6, 9, 12, 5, 7, 9, 11);
+        List<Integer> newList = list.stream().dropWhile(x -> x % 3 == 0).collect(Collectors.toList());
+        System.out.println("从流的起始位置删除为3的倍数的数，直到遇到第一个不是3的倍数的数：" + newList);
+        newList = list.stream().takeWhile(x -> x % 3 == 0).collect(Collectors.toList());
+        System.out.println("从流的起始位置保留为3的倍数的数，直到遇到第一个不是3的倍数的数：" + newList);
+    }
+
+    /**
+     * 窥视/读取(peek)
+     * peek操作接收的是一个Consumer<T>函数，peek操作会按照Consumer<T>函数提供的逻辑去消费流中的每一个元素，同时有可能改变元素内部的一些属性。
+     * peek操作一般用于不想改变流中元素本身的类型或者只想改变元素的内部状态时；
+     * 而map则用于改变流中元素本身类型，即从元素中派生出另一种类型的操作，这是他们之间的最大区别。
+     * 那么peek操作实际开发中我们会用于哪些场景呢？
+     * 比如对Collection<T>中的T的某些属性进行批处理的时候用peek操作就比较合适。
+     * 如果我们要从Collection<T>中获取T的某个属性的集合时用map也就最好不过了。
+     *
+     * @CreatedBy Darren Luo
+     * @CreatedTime 3/4/22 10:08 AM
+     */
+    private static void peek() {
+        // 打印每个员工的姓名并获得姓名长度最长的员工
+        Optional<Person> max = personList.stream().peek(person -> System.out.print(person.getName() + "--")).max(Comparator.comparing(Person::getName, Comparator.comparingInt(String::length)));
+        System.out.println("姓名长度最长的员工：" + max.get());
+        System.out.println("---------------------------------------------");
+        // 打印每个员工加薪1000前后的姓名和工资，并收集加薪1000后的员工列表
+        List newPersonList = personList.stream()
+                .peek(person -> System.out.print(person.getName() + "加薪前：" + person.getSalary()))
+                .peek(person -> person.setSalary(person.getSalary() + 1000))
+                .peek(person -> System.out.println("，" + person.getName() + "加薪后：" + person.getSalary()))
+                .collect(Collectors.toList());
+        System.out.println("---------------------------------------------");
+        System.out.println("加薪1000前的员工列表：" + personList);
+        System.out.println("加薪1000后的员工列表：" + newPersonList);
     }
 }
