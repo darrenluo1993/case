@@ -12,6 +12,10 @@ public class Calandria {
      */
     private String model;
     /**
+     * 型号名称
+     */
+    private String modelNm;
+    /**
      * 型号层级
      */
     private String modelLvl;
@@ -28,16 +32,24 @@ public class Calandria {
         this.model = model;
     }
 
+    public String getModelNm() {
+        return modelNm;
+    }
+
+    public void setModelNm(String modelNm) {
+        this.modelNm = modelNm;
+    }
+
     public String getModelLvl() {
         return modelLvl;
     }
 
-    public void setModelLvl(String modelCode) {
-        this.modelLvl = modelCode;
+    public void setModelLvl(String modelLvl) {
+        this.modelLvl = modelLvl;
     }
 
     @Override
     public String toString() {
-        return "Calandria{" + "model='" + model + '\'' + ", modelLvl='" + modelLvl + '\'' + '}';
+        return "Calandria{" + "model='" + model + '\'' + ", modelNm='" + modelNm + '\'' + ", modelLvl='" + modelLvl + '\'' + '}';
     }
 }

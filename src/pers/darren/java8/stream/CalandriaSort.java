@@ -17,12 +17,22 @@ public class CalandriaSort {
         list.add(new Calandria("埋管B-1-2-1"));
         list.add(new Calandria("埋管B-1-6-2"));
         list.add(new Calandria("埋管B-1-1-1"));
+        list.add(new Calandria("埋管A"));
+        list.add(new Calandria("埋管C"));
+        list.add(new Calandria("埋管"));
 
         List<String> modelLvlList = list.stream().peek(calandria -> {
-            String model = calandria.getModel();
             // 截取出排管型号的层级字符串
-            calandria.setModelLvl(model.substring(model.indexOf("-") + 1));
-        }).map(Calandria::getModelLvl).collect(Collectors.toList());
+            String model = calandria.getModel();
+            int firstIdx = model.indexOf("-");
+            if (firstIdx == -1) {
+                calandria.setModelNm(model);
+                calandria.setModelLvl("0");
+            } else {
+                calandria.setModelNm(model.substring(0, firstIdx));
+                calandria.setModelLvl(model.substring(firstIdx + 1));
+            }
+        }).map(Calandria::getModelLvl).toList();
         System.out.println("排管型号层级列表：");
         modelLvlList.forEach(System.out::println);
 
@@ -45,6 +55,7 @@ public class CalandriaSort {
         System.out.println("型号层级每个层级的最大长度：");
         Arrays.stream(lvlMaxLengthArr).forEach(System.out::println);
 
+        // 根据每个层级最大长度在每个层级前面补0
         modelLvlList = list.stream().peek(calandria -> {
             String[] lvlArr = calandria.getModelLvl().split("-");
             for (int i = 0; i < lvlArr.length; i++) {
@@ -62,15 +73,15 @@ public class CalandriaSort {
                 lvlArr[i] = lvl;
             }
             calandria.setModelLvl(String.join("-", lvlArr));
-        }).map(Calandria::getModelLvl).collect(Collectors.toList());
-        System.out.println("补0后的型号层级：");
+        }).map(Calandria::getModelLvl).toList();
+        System.out.println("补0后的型号层级列表：");
         modelLvlList.forEach(System.out::println);
 
-        System.out.println("根据补0后的型号层级排序");
+        System.out.println("根据型号名称与补0后的型号层级排序");
         System.out.println("排序之前：");
         list.forEach(System.out::println);
         System.out.println("排序之后：");
-        list = list.stream().sorted(Comparator.comparing(Calandria::getModelLvl)).collect(Collectors.toList());
+        list = list.stream().sorted(Comparator.comparing(Calandria::getModelNm).thenComparing(Calandria::getModelLvl)).collect(Collectors.toList());
         list.forEach(System.out::println);
     }
 }
