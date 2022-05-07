@@ -9,6 +9,6 @@
         <module name="case" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>
