@@ -1,0 +1,35 @@
+[
+    {
+        "ADDRESS": "Hunan LouDi",
+        "AGE": 28,
+        "CREATED_TIME": "2022-07-15 15:01:01",
+        "FULL_NAME": "Zhang San",
+        "GENDER": "Male",
+        "PHONE": "0731-11111111",
+        "TELEPHONE": "0731-12341234",
+        "USER_NAME": "zhangsan",
+        "SALARY": 20000
+    },
+    {
+        "ADDRESS": "Hunan ChangSha",
+        "AGE": 30,
+        "CREATED_TIME": "2022-07-14 14:56:01",
+        "FULL_NAME": "Li Si",
+        "GENDER": "Female",
+        "PHONE": "0731-22222222",
+        "TELEPHONE": "0731-23452345",
+        "USER_NAME": "lisi",
+        "SALARY": 23000
+    },
+    {
+        "ADDRESS": "Hunan ZhuZhou",
+        "AGE": 26,
+        "CREATED_TIME": "2022-07-15 15:12:01",
+        "FULL_NAME": "Wang Wu",
+        "GENDER": "Female",
+        "PHONE": "0731-33333333",
+        "TELEPHONE": "0731-34563456",
+        "USER_NAME": "wangwu",
+        "SALARY": 15000
+    }
+]
