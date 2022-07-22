@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -74,6 +75,7 @@ public class JacksonCase {
         inputStream2ObjectAndList();
         file2ObjectAndList();
         string2MapAndList();
+        string2JsonNode();
     }
 
     private static void string2ObjectAndList() throws JsonProcessingException {
@@ -137,6 +139,76 @@ public class JacksonCase {
         List<Map<String, ?>> mapList = mapper.readValue(USER_JSON_LIST_STR, new TypeReference<>() {
         });
         System.out.println("String to MapList, MapList>>>" + mapList);
+        System.out.println();
+    }
+
+    private static void string2JsonNode() throws JsonProcessingException {
+        String json = """
+                {
+                    "realName": "ZhangSan",
+                    "gender": "Male",
+                    "age": 43,
+                    "spouse": {
+                        "realName": "LiSi",
+                        "gender": "Female",
+                        "age": 40,
+                        "company": "Hunan Link-us",
+                        "hobby": [
+                            "swimming",
+                            "fitness",
+                            "listen to music",
+                            "sing"
+                        ]
+                    },
+                    "children": [
+                        {
+                            "realName": "ZhangSi",
+                            "age": 18
+                        },
+                        {
+                            "realName": "ZhangWu",
+                            "age": 17
+                        }
+                    ],
+                    "contact": [
+                        {
+                            "type": "telephone",
+                            "value": "0731-88888888"
+                        },
+                        {
+                            "type": "mobilePhone",
+                            "value": "15112341234"
+                        },
+                        {
+                            "type": "email",
+                            "value": "zhangsan@163.com"
+                        }
+                    ]
+                }
+                """;
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(json); // Or mapper.readValue(json, JsonNode.class);
+        System.out.println("node.get(\"spouse\").isArray()>>>" + node.get("spouse").isArray());
+        System.out.println("node.get(\"children\").isArray()>>>" + node.get("children").isArray());
+        System.out.println("node.get(\"realName\").isValueNode()>>>" + node.get("realName").isValueNode());
+        System.out.println("node.get(\"age\").isInt()>>>" + node.get("age").isInt());
+        // asInt方法直接调用intValue方法
+        System.out.println("node.get(\"age\").asInt()>>>" + node.get("age").asInt());
+        System.out.println("node.get(\"age\").intValue()>>>" + node.get("age").intValue());
+        System.out.println("node.get(\"gender\").asText()>>>" + node.get("gender").asText());
+        System.out.println("node.get(\"gender\").textValue()>>>" + node.get("gender").textValue());
+        System.out.println("node.get(\"company\")>>>" + node.get("company"));
+        System.out.println("node.get(\"spouse\").get(\"company\").textValue()>>>" + node.get("spouse").get("company").textValue());
+        System.out.println("node.findValue(\"company\").textValue()>>>" + node.findValue("company").textValue());
+        System.out.println("node.has(\"contact\")>>>" + node.has("contact"));
+        System.out.println("node.get(\"contact\").isValueNode()>>>" + node.get("contact").isValueNode());
+        System.out.println("node.get(\"contact\").getNodeType().name()>>>" + node.get("contact").getNodeType().name());
+        System.out.println("node.get(\"contact\").get(1).get(\"value\").textValue()>>>" + node.get("contact").get(1).get("value").textValue());
+        System.out.println("node.get(\"spouse\").get(\"hobby\").findParent(\"spouse\")>>>" + node.get("spouse").get("hobby").findParent("spouse"));
+        System.out.println("node.findValues(\"realName\").forEach(System.out::println)>>>");
+        node.findValues("realName").forEach(System.out::println);
+        System.out.println("node.findValuesAsText(\"realName\").forEach(System.out::println)>>>");
+        node.findValuesAsText("realName").forEach(System.out::println);
     }
 }
 
