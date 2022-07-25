@@ -7,11 +7,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +80,7 @@ public class JacksonCase {
         file2ObjectAndList();
         string2MapAndList();
         string2JsonNode();
+        objectAndList2Json();
     }
 
     private static void string2ObjectAndList() throws JsonProcessingException {
@@ -140,6 +145,46 @@ public class JacksonCase {
         });
         System.out.println("String to MapList, MapList>>>" + mapList);
         System.out.println();
+    }
+
+    private static void objectAndList2Json() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        User user = mapper.readValue(USER_JSON_STR, User.class);
+        List<User> userList = mapper.readValue(USER_JSON_LIST_STR, new TypeReference<>() {
+        });
+        // writeValueAsString(Object value)
+        String userJsonStr = mapper.writeValueAsString(user);
+        System.out.println("Object to String, UserJsonStr>>>" + userJsonStr);
+        String userListJsonStr = mapper.writeValueAsString(userList);
+        System.out.println("List to String, UserListJsonStr>>>" + userListJsonStr);
+        System.out.println();
+        // writeValue(Writer writer, Object value)
+        StringWriter writer = new StringWriter();
+        mapper.writeValue(writer, user);
+        System.out.println("Object to Writer>>>" + writer);
+        writer = new StringWriter();
+        mapper.writeValue(writer, userList);
+        System.out.println("List to Writer>>>" + writer);
+        System.out.println();
+        // writeValue(File resultFile, Object value)
+        ObjectWriter objectWriter = mapper.writerWithDefaultPrettyPrinter();
+        objectWriter.writeValue(new File("/home/darren/Temporary/json/user.json"), user);
+        objectWriter.writeValue(new File("/home/darren/Temporary/json/userlist.json"), userList);
+        // writeValue(OutputStream out, Object value)
+        // writeValueAsBytes(Object value)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        mapper.writeValue(baos, user);
+        byte[] userJsonByteArr = baos.toByteArray();
+        System.out.println("Object to ByteArrayOutputStream>>>" + Arrays.toString(userJsonByteArr));
+        userJsonByteArr = mapper.writeValueAsBytes(user);
+        System.out.println("Object to ByteArray>>>" + Arrays.toString(userJsonByteArr));
+        System.out.println();
+        baos.reset();
+        mapper.writeValue(baos, userList);
+        byte[] userListJsonByteArr = baos.toByteArray();
+        System.out.println("List to ByteArrayOutputStream>>>" + Arrays.toString(userListJsonByteArr));
+        userListJsonByteArr = mapper.writeValueAsBytes(userList);
+        System.out.println("List to ByteArray>>>" + Arrays.toString(userListJsonByteArr));
     }
 
     private static void string2JsonNode() throws JsonProcessingException {
@@ -209,6 +254,7 @@ public class JacksonCase {
         node.findValues("realName").forEach(System.out::println);
         System.out.println("node.findValuesAsText(\"realName\").forEach(System.out::println)>>>");
         node.findValuesAsText("realName").forEach(System.out::println);
+        System.out.println();
     }
 }
 
