@@ -9,10 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Arrays;
@@ -185,6 +182,13 @@ public class JacksonCase {
         System.out.println("List to ByteArrayOutputStream>>>" + Arrays.toString(userListJsonByteArr));
         userListJsonByteArr = mapper.writeValueAsBytes(userList);
         System.out.println("List to ByteArray>>>" + Arrays.toString(userListJsonByteArr));
+        // writeValue(FileOutputStream out, Object value)
+        FileOutputStream fos = new FileOutputStream("/home/darren/Temporary/json/user-fos.json");
+        objectWriter.writeValue(fos, user);
+        fos.close();
+        fos = new FileOutputStream("/home/darren/Temporary/json/userlist-fos.json");
+        objectWriter.writeValue(fos, userList);
+        fos.close();
     }
 
     private static void string2JsonNode() throws JsonProcessingException {
