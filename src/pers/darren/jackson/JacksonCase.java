@@ -1,8 +1,6 @@
 package pers.darren.jackson;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+
 public class JacksonCase {
 
     private static final String USER_JSON_STR = """
@@ -29,7 +29,8 @@ public class JacksonCase {
                 "PHONE": "0731-88888888",
                 "TELEPHONE": "0731-99999999",
                 "USER_NAME": "darrenluo1993",
-                "SALARY": 10000
+                "SALARY": 10000,
+                "UNKNOWN": "NO VALUE"
             }
             """;
 
@@ -262,6 +263,8 @@ public class JacksonCase {
     }
 }
 
+@JsonInclude(NON_EMPTY) // 仅序列化值非空和非空字符串的字段
+@JsonIgnoreProperties(ignoreUnknown = true) // 反序列化时忽略类中没有对应字段或Setter的JSON属性
 class User {
     /**
      * 用户名
@@ -305,6 +308,9 @@ class User {
     @JsonProperty("CREATED_TIME")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdTime;
+
+    @JsonProperty("NO_VALUE")
+    private String noValue;
 
     public String getUserName() {
         return userName;
@@ -368,6 +374,24 @@ class User {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public String getNoValue() {
+        return noValue;
+    }
+
+    public void setNoValue(String noValue) {
+        this.noValue = noValue;
+    }
+
+    @JsonProperty("BASIC_INFO")
+    public String getBasicInfo() {
+        return "Full Name:" + this.fullName + ", User Name:" + this.userName + ", Telephone:" + this.phone;
+    }
+
+    @JsonValue(false)
+    public String toJSON() {
+        return "{\"userName\":\"" + userName + "\", \"fullName\":\"" + fullName + "\", \"gender\":\"" + gender + "\", \"age\":" + age + ", \"phone\":\"" + phone + "\", \"salary\":" + salary + ", \"address\":\"" + address + "\", \"createdTime\":\"" + createdTime + "\"}";
     }
 
     @Override
