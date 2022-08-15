@@ -30,7 +30,8 @@ public class JacksonCase {
                 "TELEPHONE": "0731-99999999",
                 "USER_NAME": "darrenluo1993",
                 "SALARY": 10000,
-                "UNKNOWN": "NO VALUE"
+                "UNKNOWN_JSON_PROP": "This is an unknown JSON property!",
+                "IGNORED_CLASS_FIELD": "This is an ignored class field!"
             }
             """;
 
@@ -309,8 +310,12 @@ class User {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdTime;
 
-    @JsonProperty("NO_VALUE")
-    private String noValue;
+    @JsonProperty("VALUE_IS_EMPTY") // 受@JsonInclude(NON_EMPTY)限制，此空值字段不会被序列化
+    private String valueIsEmpty;
+
+    @JsonIgnore // 表示此字段在序列化和反序列化的时候都将被忽略
+    @JsonProperty("IGNORED_CLASS_FIELD")
+    private String ignoredClassField;
 
     public String getUserName() {
         return userName;
@@ -376,12 +381,20 @@ class User {
         this.createdTime = createdTime;
     }
 
-    public String getNoValue() {
-        return noValue;
+    public String getValueIsEmpty() {
+        return valueIsEmpty;
     }
 
-    public void setNoValue(String noValue) {
-        this.noValue = noValue;
+    public void setValueIsEmpty(String valueIsEmpty) {
+        this.valueIsEmpty = valueIsEmpty;
+    }
+
+    public String getIgnoredClassField() {
+        return ignoredClassField;
+    }
+
+    public void setIgnoredClassField(String ignoredClassField) {
+        this.ignoredClassField = ignoredClassField;
     }
 
     @JsonProperty("BASIC_INFO")
@@ -396,6 +409,6 @@ class User {
 
     @Override
     public String toString() {
-        return "User{" + "userName='" + userName + '\'' + ", fullName='" + fullName + '\'' + ", gender='" + gender + '\'' + ", age=" + age + ", phone='" + phone + '\'' + ", salary=" + salary + ", address='" + address + '\'' + ", createdTime=" + createdTime + '}';
+        return "User{" + "userName='" + userName + '\'' + ", fullName='" + fullName + '\'' + ", gender='" + gender + '\'' + ", age=" + age + ", phone='" + phone + '\'' + ", salary=" + salary + ", address='" + address + '\'' + ", createdTime=" + createdTime + ", valueIsEmpty='" + valueIsEmpty + '\'' + ", ignoredClassField='" + ignoredClassField + '\'' + '}';
     }
 }
