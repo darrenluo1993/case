@@ -18,16 +18,17 @@
         <commons.lang3.version>3.12.0</commons.lang3.version>
         <commons.net.version>3.8.0</commons.net.version>
         <easyexcel.version>3.1.1</easyexcel.version>
-        <fastjson.version>2.0.3</fastjson.version>
+        <fastjson.version>2.0.12</fastjson.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.8.1</hutool.version>
+        <hutool.version>5.8.5</hutool.version>
         <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
-        <io.lettuce.version>6.1.8.RELEASE</io.lettuce.version>
+        <io.lettuce.version>6.2.0.RELEASE</io.lettuce.version>
         <jackson.annotations.version>2.13.3</jackson.annotations.version>
         <jackson.core.version>2.13.3</jackson.core.version>
         <jackson.databind.version>2.13.3</jackson.databind.version>
         <jcraft.jsch.version>0.1.55</jcraft.jsch.version>
-        <log4j.core.version>2.17.2</log4j.core.version>
+        <junit.version>5.9.0</junit.version>
+        <log4j.core.version>2.18.0</log4j.core.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <rabbitmq.client.version>5.14.2</rabbitmq.client.version>
         <spring.web.version>5.3.20</spring.web.version>
@@ -154,6 +155,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

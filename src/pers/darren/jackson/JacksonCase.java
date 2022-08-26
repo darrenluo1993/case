@@ -10,10 +10,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import java.io.*;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
@@ -80,9 +77,10 @@ public class JacksonCase {
         string2MapAndList();
         string2JsonNode();
         objectAndList2Json();
+        convertValue();
     }
 
-    private static void string2ObjectAndList() throws JsonProcessingException {
+    public static void string2ObjectAndList() throws JsonProcessingException {
         ////////////////////////////////To Object////////////////////////////////
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.readValue(USER_JSON_STR, User.class);
@@ -94,7 +92,7 @@ public class JacksonCase {
         System.out.println();
     }
 
-    private static void inputStream2ObjectAndList() throws IOException {
+    public static void inputStream2ObjectAndList() throws IOException {
         ////////////////////////////////To Object////////////////////////////////
         ObjectMapper mapper = new ObjectMapper();
         URL jsonURL = JacksonCase.class.getResource("/user.json");
@@ -116,7 +114,7 @@ public class JacksonCase {
         System.out.println();
     }
 
-    private static void file2ObjectAndList() throws IOException {
+    public static void file2ObjectAndList() throws IOException {
         ////////////////////////////////To Object////////////////////////////////
         ObjectMapper mapper = new ObjectMapper();
         File jsonFile = new File("resources/user.json");
@@ -133,7 +131,7 @@ public class JacksonCase {
         System.out.println();
     }
 
-    private static void string2MapAndList() throws JsonProcessingException {
+    public static void string2MapAndList() throws JsonProcessingException {
         /////////////////////////////////To Map//////////////////////////////////
         ObjectMapper mapper = new ObjectMapper();
         Map<String, ?> map = mapper.readValue(USER_JSON_STR, new TypeReference<>() {
@@ -146,7 +144,7 @@ public class JacksonCase {
         System.out.println();
     }
 
-    private static void objectAndList2Json() throws IOException {
+    public static void objectAndList2Json() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.readValue(USER_JSON_STR, User.class);
         List<User> userList = mapper.readValue(USER_JSON_LIST_STR, new TypeReference<>() {
@@ -193,7 +191,7 @@ public class JacksonCase {
         fos.close();
     }
 
-    private static void string2JsonNode() throws JsonProcessingException {
+    public static void string2JsonNode() throws JsonProcessingException {
         String json = """
                 {
                     "realName": "ZhangSan",
@@ -261,6 +259,27 @@ public class JacksonCase {
         System.out.println("node.findValuesAsText(\"realName\").forEach(System.out::println)>>>");
         node.findValuesAsText("realName").forEach(System.out::println);
         System.out.println();
+    }
+
+    public static void convertValue() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println("===========com.fasterxml.jackson.databind.ObjectMapper.convertValue(entity, User.class)===========");
+        User user1 = mapper.readValue(USER_JSON_STR, User.class);
+        User user2 = mapper.convertValue(user1, User.class);
+        System.out.println("user1==user2>>>" + (user1 == user2));
+        System.out.println("user1>>>" + user1);
+        System.out.println("user2>>>" + user2);
+        System.out.println("===========com.fasterxml.jackson.databind.ObjectMapper.convertValue(base64, byte[].class)===========");
+        String before = user1.toJSON();
+        System.out.println("base64Before>>>" + before);
+        byte[] bytes = before.getBytes();
+        System.out.println("beforeToBytes>>>" + Arrays.toString(bytes));
+        String base64 = Base64.getEncoder().encodeToString(bytes);
+        System.out.println("base64>>>" + base64);
+        bytes = mapper.convertValue(base64, byte[].class);
+        System.out.println("base64ToBytes>>>" + Arrays.toString(bytes));
+        System.out.println("base64BytesToString>>>" + new String(bytes));
+        System.out.println("base64ToString>>>" + mapper.convertValue(base64, String.class));
     }
 }
 
