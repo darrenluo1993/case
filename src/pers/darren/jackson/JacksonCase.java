@@ -1,11 +1,12 @@
 package pers.darren.jackson;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.common.collect.Lists;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+import static com.fasterxml.jackson.core.JsonToken.*;
 
 public class JacksonCase {
 
@@ -247,6 +249,7 @@ public class JacksonCase {
         System.out.println("node.get(\"gender\").asText()>>>" + node.get("gender").asText());
         System.out.println("node.get(\"gender\").textValue()>>>" + node.get("gender").textValue());
         System.out.println("node.get(\"company\")>>>" + node.get("company"));
+        System.out.println("node.at(\"/spouse/company\").textValue()>>>" + node.at("/spouse/company").textValue());
         System.out.println("node.get(\"spouse\").get(\"company\").textValue()>>>" + node.get("spouse").get("company").textValue());
         System.out.println("node.findValue(\"company\").textValue()>>>" + node.findValue("company").textValue());
         System.out.println("node.has(\"contact\")>>>" + node.has("contact"));
@@ -263,23 +266,122 @@ public class JacksonCase {
 
     public static void convertValue() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println("===========com.fasterxml.jackson.databind.ObjectMapper.convertValue(entity, User.class)===========");
+        System.out.println("======================com.fasterxml.jackson.databind.ObjectMapper.convertValue(entity, User.class)======================");
         User user1 = mapper.readValue(USER_JSON_STR, User.class);
         User user2 = mapper.convertValue(user1, User.class);
         System.out.println("user1==user2>>>" + (user1 == user2));
         System.out.println("user1>>>" + user1);
         System.out.println("user2>>>" + user2);
-        System.out.println("===========com.fasterxml.jackson.databind.ObjectMapper.convertValue(base64, byte[].class)===========");
+        System.out.println("======================com.fasterxml.jackson.databind.ObjectMapper.convertValue(base64, byte[].class)======================");
         String before = user1.toJSON();
         System.out.println("base64Before>>>" + before);
         byte[] bytes = before.getBytes();
         System.out.println("beforeToBytes>>>" + Arrays.toString(bytes));
         String base64 = Base64.getEncoder().encodeToString(bytes);
         System.out.println("base64>>>" + base64);
+        // 解码Base64字符串
         bytes = mapper.convertValue(base64, byte[].class);
         System.out.println("base64ToBytes>>>" + Arrays.toString(bytes));
         System.out.println("base64BytesToString>>>" + new String(bytes));
         System.out.println("base64ToString>>>" + mapper.convertValue(base64, String.class));
+        System.out.println("======================com.fasterxml.jackson.databind.ObjectMapper.convertValue(List<Integer>, int[].class)======================");
+        List<Integer> integerList = Lists.newArrayList(1, 2, 3);
+        System.out.println("List<Integer> values>>>" + integerList);
+        int[] ints = mapper.convertValue(integerList, int[].class);
+        System.out.println("List<Integer> to int[]>>>" + Arrays.toString(ints));
+        Integer[] integers = mapper.convertValue(integerList, Integer[].class);
+        System.out.println("List<Integer> to Integer[]>>>" + Arrays.toString(integers));
+        System.out.println("======================com.fasterxml.jackson.databind.ObjectMapper.convertValue(entity, Map.class)======================");
+        Map<String, Object> userMap = mapper.convertValue(user1, Map.class);
+        System.out.println("User to Map<String, Object>>>>" + userMap);
+        System.out.println("======================com.fasterxml.jackson.databind.ObjectMapper.convertValue(Map, entity.class)======================");
+        User user3 = mapper.convertValue(userMap, User.class);
+        System.out.println("Map<String, Object> to User>>>" + user3);
+    }
+
+    public static void jsonGeneratorParser() throws IOException {
+        JsonFactory factory = new JsonFactory();
+        // 生成JSON
+        System.out.println("=================================生成JSON=================================");
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = factory.createGenerator(writer);
+        generator.useDefaultPrettyPrinter();
+        generator.writeStartObject();
+        generator.writeStringField("userName", "username1");
+        generator.writeStringField("fullName", "Full Name 1");
+        generator.writeStringField("gender", "Male");
+        generator.writeNumberField("age", 22);
+        generator.writeNumberField("weight", 60.5);
+        generator.writeNumberField("salary", new BigDecimal("15000"));
+        generator.writeStringField("company", "Hunan Link-us");
+        generator.writeArrayFieldStart("area");
+        generator.writeNumber(141.5);
+        generator.writeNumber(73.1);
+        generator.writeNumber(129.9);
+        generator.writeEndArray();
+        generator.writeObjectFieldStart("spouse");
+        generator.writeStringField("userName", "username2");
+        generator.writeStringField("fullName", "Full Name 2");
+        generator.writeStringField("gender", "Female");
+        generator.writeNumberField("age", 20);
+        generator.writeNumberField("weight", 45.7);
+        generator.writeArrayFieldStart("bwh");
+        generator.writeNumber(100);
+        generator.writeNumber(75);
+        generator.writeNumber(80);
+        generator.writeEndArray();
+        generator.writeNumberField("salary", new BigDecimal("10000"));
+        generator.writeStringField("company", "Hunan JiaJie Group");
+        generator.writeArrayFieldStart("hobby");
+        generator.writeString("swimming");
+        generator.writeString("sing");
+        generator.writeString("fitness");
+        generator.writeEndArray();
+        generator.writeEndObject();
+        generator.writeArrayFieldStart("contact");
+        generator.writeStartObject();
+        generator.writeStringField("type", "telephone");
+        generator.writeStringField("value", "0731-88888888");
+        generator.writeEndObject();
+        generator.writeStartObject();
+        generator.writeStringField("type", "mobilePhone");
+        generator.writeStringField("value", "15112344321");
+        generator.writeEndObject();
+        generator.writeEndArray();
+        generator.writeEndObject();
+        generator.close();
+        String userJson = writer.toString();
+        System.out.println(userJson);
+        // 解析JSON
+        System.out.println("=================================解析JSON=================================");
+        JsonParser parser = factory.createParser(userJson);
+        while (!parser.isClosed()) {
+            JsonToken token = parser.nextToken();
+            // 如果token类型为字段，使用getCurrentName获取名称
+            if (token == FIELD_NAME) {
+                System.out.print(parser.getCurrentName() + "=");
+                token = parser.nextToken();
+                if (token == VALUE_STRING) { // 如果token类型为字符串值，使用getValueAsString获取值
+                    System.out.println(parser.getValueAsString());
+                } else if (token == VALUE_NUMBER_INT) { // 如果token类型为整型值，使用getValueAsInt获取值
+                    System.out.println(parser.getValueAsInt());
+                } else if (token == VALUE_NUMBER_FLOAT) { // 如果token类型为浮点型值，使用getValueAsDouble获取值
+                    System.out.println(parser.getValueAsDouble());
+                } else if (token == START_ARRAY) {
+                    System.out.println("[]");
+                } else if (token == START_OBJECT) {
+                    System.out.println("{}");
+                } else {
+                    System.out.println();
+                }
+            } else if (token == VALUE_STRING) {
+                System.out.println(parser.getValueAsString());
+            } else if (token == VALUE_NUMBER_INT) {
+                System.out.println(parser.getValueAsInt());
+            } else if (token == VALUE_NUMBER_FLOAT) {
+                System.out.println(parser.getValueAsDouble());
+            }
+        }
     }
 }
 

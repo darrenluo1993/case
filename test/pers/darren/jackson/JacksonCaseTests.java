@@ -90,6 +90,12 @@ public class JacksonCaseTests {
     }
 
     @Test
+    @Order(10)
+    public void jsonGeneratorParserTest() throws IOException {
+        jsonGeneratorParser();
+    }
+
+    @Test
     @Order(8)
     // @EnabledIf("customCondition")
     @EnabledIf("pers.darren.jackson.ExternalCondition#customCondition")
