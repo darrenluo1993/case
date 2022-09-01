@@ -15,6 +15,7 @@ import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 import static com.fasterxml.jackson.core.JsonToken.*;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class JacksonCase {
 
@@ -103,6 +104,8 @@ public class JacksonCase {
         System.out.println("URL to Object, User>>>" + user);
         user = mapper.readValue(JacksonCase.class.getResourceAsStream("/user.json"), User.class);
         System.out.println("InputStream to Object, User>>>" + user);
+        user = mapper.readValue(new StringReader(USER_JSON_STR), User.class);
+        System.out.println("Reader to Object, User>>>" + user);
         System.out.println();
         /////////////////////////////////To List/////////////////////////////////
         jsonURL = JacksonCase.class.getResource("/userlist.json");
@@ -113,6 +116,9 @@ public class JacksonCase {
         userList = mapper.readValue(JacksonCase.class.getResourceAsStream("/userlist.json"), new TypeReference<>() {
         });
         System.out.println("InputStream to List, UserList>>>" + userList);
+        userList = mapper.readValue(new StringReader(USER_JSON_LIST_STR), new TypeReference<>() {
+        });
+        System.out.println("Reader to List, UserList>>>" + userList);
         System.out.println();
     }
 
@@ -131,6 +137,38 @@ public class JacksonCase {
         });
         System.out.println("File to List, UserList>>>" + userList);
         System.out.println();
+    }
+
+    public static void byteArray2ObjectAndList() throws Exception {
+        ////////////////////////////////To Object////////////////////////////////
+        ObjectMapper mapper = new ObjectMapper();
+        byte[] bytes = USER_JSON_STR.getBytes(UTF_8);
+        User user = mapper.readValue(bytes, User.class);
+        System.out.println("byte[] to Object, User>>>" + user);
+        /////////////////////////////////To List/////////////////////////////////
+        bytes = USER_JSON_LIST_STR.getBytes(UTF_8);
+        List<User> userList = mapper.readValue(bytes, new TypeReference<>() {
+        });
+        System.out.println("byte[] to List, UserList>>>" + userList);
+    }
+
+    public static void jsonArray2ObjectArray() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        User[] users = mapper.readValue(USER_JSON_LIST_STR, User[].class);
+        System.out.println("String to Object Array, User[]>>>" + Arrays.toString(users));
+        users = mapper.readValue(new File("resources/userlist.json"), User[].class);
+        System.out.println("File to Object Array, User[]>>>" + Arrays.toString(users));
+        users = mapper.readValue(JacksonCase.class.getResource("/userlist.json"), User[].class);
+        System.out.println("URL to Object Array, User[]>>>" + Arrays.toString(users));
+        users = mapper.readValue(JacksonCase.class.getResourceAsStream("/userlist.json"), User[].class);
+        System.out.println("InputStream to Object Array, User[]>>>" + Arrays.toString(users));
+        users = mapper.readValue(new StringReader(USER_JSON_LIST_STR), User[].class);
+        System.out.println("Reader to Object Array, User[]>>>" + Arrays.toString(users));
+        users = mapper.readValue(USER_JSON_LIST_STR.getBytes(UTF_8), User[].class);
+        System.out.println("byte[] to Object Array, User[]>>>" + Arrays.toString(users));
+        DataInput dataInput = new DataInputStream(JacksonCase.class.getResourceAsStream("/userlist.json"));
+        users = mapper.readValue(dataInput, User[].class);
+        System.out.println("DataInput to Object Array, User[]>>>" + Arrays.toString(users));
     }
 
     public static void string2MapAndList() throws JsonProcessingException {
@@ -383,6 +421,23 @@ public class JacksonCase {
             }
         }
     }
+
+    public static void valueToTreeAndTreeToValue() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        User user = mapper.readValue(USER_JSON_STR, User.class);
+        List<User> userList = mapper.readValue(USER_JSON_LIST_STR, new TypeReference<>() {
+        });
+        JsonNode userTree = mapper.valueToTree(user);
+        System.out.println("Object valueToTree, userTree>>>" + userTree);
+        System.out.println("userTree.get(\"USER_NAME\").textValue()>>>" + userTree.get("USER_NAME").textValue());
+        JsonNode userListTree = mapper.valueToTree(userList);
+        System.out.println("List valueToTree, userListTree>>>" + userListTree);
+        user = mapper.treeToValue(userTree, User.class);
+        System.out.println("Object treeToValue, User>>>" + user);
+        // userListTree无法通过treeToValue方法转回成userList，只能转成List<Map>
+        List list = mapper.treeToValue(userListTree, List.class);
+        System.out.println("List treeToValue, List>>>" + list);
+    }
 }
 
 @JsonInclude(NON_EMPTY) // 仅序列化值非空和非空字符串的字段
@@ -437,6 +492,10 @@ class User {
     @JsonIgnore // 表示此字段在序列化和反序列化的时候都将被忽略
     @JsonProperty("IGNORED_CLASS_FIELD")
     private String ignoredClassField;
+
+    @JsonRawValue
+    @JsonProperty("RAW_VALUE")
+    private String rawValue = "{\"key1\": \"value1\", \"key2\": \"value2\"}";
 
     public String getUserName() {
         return userName;
@@ -516,6 +575,14 @@ class User {
 
     public void setIgnoredClassField(String ignoredClassField) {
         this.ignoredClassField = ignoredClassField;
+    }
+
+    public String getRawValue() {
+        return rawValue;
+    }
+
+    public void setRawValue(String rawValue) {
+        this.rawValue = rawValue;
     }
 
     @JsonProperty("BASIC_INFO")
