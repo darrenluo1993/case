@@ -225,10 +225,8 @@ public class JacksonCase {
         // writeValue(FileOutputStream out, Object value)
         FileOutputStream fos = new FileOutputStream("/home/darren/Temporary/json/user-fos.json");
         objectWriter.writeValue(fos, user);
-        fos.close();
         fos = new FileOutputStream("/home/darren/Temporary/json/userlist-fos.json");
         objectWriter.writeValue(fos, userList);
-        fos.close();
     }
 
     public static void string2JsonNode() throws JsonProcessingException {
