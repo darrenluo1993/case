@@ -11,7 +11,7 @@
     <properties>
         <activemq.core.version>5.7.0</activemq.core.version>
         <apache.poi.version>5.2.2</apache.poi.version>
-        <auth0.jwt.version>3.19.2</auth0.jwt.version>
+        <auth0.jwt.version>4.0.0</auth0.jwt.version>
         <commons.codec.version>1.15</commons.codec.version>
         <commons.fileupload.version>1.4</commons.fileupload.version>
         <commons.io.version>2.11.0</commons.io.version>
@@ -20,19 +20,19 @@
         <easyexcel.version>3.1.1</easyexcel.version>
         <fastjson.version>2.0.12</fastjson.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.8.5</hutool.version>
+        <hutool.version>5.8.6</hutool.version>
         <io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
         <io.lettuce.version>6.2.0.RELEASE</io.lettuce.version>
-        <jackson.annotations.version>2.13.3</jackson.annotations.version>
-        <jackson.core.version>2.13.3</jackson.core.version>
-        <jackson.databind.version>2.13.3</jackson.databind.version>
-        <jackson.dataformat.xml.version>2.13.3</jackson.dataformat.xml.version>
+        <jackson.annotations.version>2.13.4</jackson.annotations.version>
+        <jackson.core.version>2.13.4</jackson.core.version>
+        <jackson.databind.version>2.13.4</jackson.databind.version>
+        <jackson.dataformat.xml.version>2.13.4</jackson.dataformat.xml.version>
         <jcraft.jsch.version>0.1.55</jcraft.jsch.version>
         <junit.version>5.9.0</junit.version>
         <log4j.core.version>2.18.0</log4j.core.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <rabbitmq.client.version>5.14.2</rabbitmq.client.version>
-        <spring.web.version>5.3.20</spring.web.version>
+        <spring.web.version>5.3.22</spring.web.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
     </properties>
 
