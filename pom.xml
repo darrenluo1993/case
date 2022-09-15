@@ -26,6 +26,7 @@
         <jackson.annotations.version>2.13.4</jackson.annotations.version>
         <jackson.core.version>2.13.4</jackson.core.version>
         <jackson.databind.version>2.13.4</jackson.databind.version>
+        <jackson.dataformat.prop.version>2.13.4</jackson.dataformat.prop.version>
         <jackson.dataformat.xml.version>2.13.4</jackson.dataformat.xml.version>
         <jcraft.jsch.version>0.1.55</jcraft.jsch.version>
         <junit.version>5.9.0</junit.version>
@@ -151,6 +152,11 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.dataformat.xml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-properties</artifactId>
+            <version>${jackson.dataformat.prop.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
