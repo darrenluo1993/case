@@ -6,8 +6,7 @@ import javassist.CtField;
 import javassist.CtMethod;
 
 import static javassist.CtField.Initializer.constant;
-import static javassist.Modifier.PUBLIC;
-import static javassist.Modifier.STATIC;
+import static javassist.Modifier.*;
 
 class Generator {
 
@@ -15,12 +14,10 @@ class Generator {
         ClassPool pool = ClassPool.getDefault();
         CtClass ctClass = pool.getCtClass("pers.darren.bytecode.javassist.aop.Base");
         CtField name = new CtField(pool.getCtClass("java.lang.String"), "name", ctClass);
-        name.setModifiers(PUBLIC);
-        name.setModifiers(STATIC);
+        name.setModifiers(PUBLIC + STATIC + FINAL);
         ctClass.addField(name, constant("Darren Luo"));
         CtField gender = new CtField(pool.getCtClass("java.lang.String"), "gender", ctClass);
-        gender.setModifiers(PUBLIC);
-        gender.setModifiers(STATIC);
+        gender.setModifiers(PUBLIC + STATIC + FINAL);
         ctClass.addField(gender, constant("Male"));
         // CtField age = new CtField(pool.getCtClass("java.lang.Integer"), "age", ctClass);
         // age.setModifiers(PUBLIC);
