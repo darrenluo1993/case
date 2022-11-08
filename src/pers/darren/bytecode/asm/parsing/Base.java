@@ -1,4 +1,4 @@
-package pers.darren.bytecode.asm.simple;
+package pers.darren.bytecode.asm.parsing;
 
 import com.fasterxml.jackson.annotation.*;
 

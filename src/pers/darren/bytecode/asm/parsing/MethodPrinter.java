@@ -1,4 +1,4 @@
-package pers.darren.bytecode.asm.simple;
+package pers.darren.bytecode.asm.parsing;
 
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.MethodVisitor;
