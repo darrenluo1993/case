@@ -10,27 +10,28 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import static org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Type.*;
 
 public class GenerateClass {
 
     public static void main(String[] args) throws Exception {
         ClassWriter user = new ClassWriter(0);
         user.visit(V18, ACC_PUBLIC | ACC_FINAL | ACC_SUPER, "pers/darren/bytecode/asm/generating/User", null, "java/lang/Object", null);
-        user.visitField(ACC_PRIVATE, "userName", "Ljava/lang/String;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "fullName", "Ljava/lang/String;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "gender", "Ljava/lang/String;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "age", "Ljava/lang/Integer;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "phone", "Ljava/lang/String;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "salary", "Ljava/math/BigDecimal;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "address", "Ljava/lang/String;", null, null).visitEnd();
-        user.visitField(ACC_PRIVATE, "createdTime", "Ljava/util/Date;", null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "userName", getDescriptor(String.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "fullName", getDescriptor(String.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "gender", getDescriptor(String.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "age", getDescriptor(Integer.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "phone", getDescriptor(String.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "salary", getDescriptor(BigDecimal.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "address", getDescriptor(String.class), null, null).visitEnd();
+        user.visitField(ACC_PRIVATE, "createdTime", getDescriptor(Date.class), null, null).visitEnd();
         {
             MethodVisitor init = user.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
             init.visitCode();
             Label label0 = new Label();
             init.visitLabel(label0);
             init.visitVarInsn(ALOAD, 0);
-            init.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+            init.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", getMethodDescriptor(VOID_TYPE), false);
             init.visitInsn(RETURN);
             Label label1 = new Label();
             init.visitLabel(label1);
@@ -39,12 +40,12 @@ public class GenerateClass {
             init.visitEnd();
         }
         {
-            MethodVisitor getUserName = user.visitMethod(ACC_PUBLIC, "getUserName", "()Ljava/lang/String;", null, null);
+            MethodVisitor getUserName = user.visitMethod(ACC_PUBLIC, "getUserName", getMethodDescriptor(getType(String.class)), null, null);
             getUserName.visitCode();
             Label label0 = new Label();
             getUserName.visitLabel(label0);
             getUserName.visitVarInsn(ALOAD, 0);
-            getUserName.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "userName", "Ljava/lang/String;");
+            getUserName.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "userName", getDescriptor(String.class));
             getUserName.visitInsn(ARETURN);
             Label label1 = new Label();
             getUserName.visitLabel(label1);
@@ -53,28 +54,28 @@ public class GenerateClass {
             getUserName.visitEnd();
         }
         {
-            MethodVisitor setUserName = user.visitMethod(ACC_PUBLIC, "setUserName", "(Ljava/lang/String;)V", null, null);
+            MethodVisitor setUserName = user.visitMethod(ACC_PUBLIC, "setUserName", getMethodDescriptor(VOID_TYPE, getType(String.class)), null, null);
             setUserName.visitCode();
             Label label0 = new Label();
             setUserName.visitLabel(label0);
             setUserName.visitVarInsn(ALOAD, 0);
             setUserName.visitVarInsn(ALOAD, 1);
-            setUserName.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "userName", "Ljava/lang/String;");
+            setUserName.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "userName", getDescriptor(String.class));
             setUserName.visitInsn(RETURN);
             Label label1 = new Label();
             setUserName.visitLabel(label1);
             setUserName.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setUserName.visitLocalVariable("userName", "Ljava/lang/String;", null, label0, label1, 1);
+            setUserName.visitLocalVariable("userName", getDescriptor(String.class), null, label0, label1, 1);
             setUserName.visitMaxs(2, 2);
             setUserName.visitEnd();
         }
         {
-            MethodVisitor getFullName = user.visitMethod(ACC_PUBLIC, "getFullName", "()Ljava/lang/String;", null, null);
+            MethodVisitor getFullName = user.visitMethod(ACC_PUBLIC, "getFullName", getMethodDescriptor(getType(String.class)), null, null);
             getFullName.visitCode();
             Label label0 = new Label();
             getFullName.visitLabel(label0);
             getFullName.visitVarInsn(ALOAD, 0);
-            getFullName.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "fullName", "Ljava/lang/String;");
+            getFullName.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "fullName", getDescriptor(String.class));
             getFullName.visitInsn(ARETURN);
             Label label1 = new Label();
             getFullName.visitLabel(label1);
@@ -83,28 +84,28 @@ public class GenerateClass {
             getFullName.visitEnd();
         }
         {
-            MethodVisitor setFullName = user.visitMethod(ACC_PUBLIC, "setFullName", "(Ljava/lang/String;)V", null, null);
+            MethodVisitor setFullName = user.visitMethod(ACC_PUBLIC, "setFullName", getMethodDescriptor(VOID_TYPE, getType(String.class)), null, null);
             setFullName.visitCode();
             Label label0 = new Label();
             setFullName.visitLabel(label0);
             setFullName.visitVarInsn(ALOAD, 0);
             setFullName.visitVarInsn(ALOAD, 1);
-            setFullName.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "fullName", "Ljava/lang/String;");
+            setFullName.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "fullName", getDescriptor(String.class));
             setFullName.visitInsn(RETURN);
             Label label1 = new Label();
             setFullName.visitLabel(label1);
             setFullName.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setFullName.visitLocalVariable("fullName", "Ljava/lang/String;", null, label0, label1, 1);
+            setFullName.visitLocalVariable("fullName", getDescriptor(String.class), null, label0, label1, 1);
             setFullName.visitMaxs(2, 2);
             setFullName.visitEnd();
         }
         {
-            MethodVisitor getGender = user.visitMethod(ACC_PUBLIC, "getGender", "()Ljava/lang/String;", null, null);
+            MethodVisitor getGender = user.visitMethod(ACC_PUBLIC, "getGender", getMethodDescriptor(getType(String.class)), null, null);
             getGender.visitCode();
             Label label0 = new Label();
             getGender.visitLabel(label0);
             getGender.visitVarInsn(ALOAD, 0);
-            getGender.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "gender", "Ljava/lang/String;");
+            getGender.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "gender", getDescriptor(String.class));
             getGender.visitInsn(ARETURN);
             Label label1 = new Label();
             getGender.visitLabel(label1);
@@ -113,28 +114,28 @@ public class GenerateClass {
             getGender.visitEnd();
         }
         {
-            MethodVisitor setGender = user.visitMethod(ACC_PUBLIC, "setGender", "(Ljava/lang/String;)V", null, null);
+            MethodVisitor setGender = user.visitMethod(ACC_PUBLIC, "setGender", getMethodDescriptor(VOID_TYPE, getType(String.class)), null, null);
             setGender.visitCode();
             Label label0 = new Label();
             setGender.visitLabel(label0);
             setGender.visitVarInsn(ALOAD, 0);
             setGender.visitVarInsn(ALOAD, 1);
-            setGender.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "gender", "Ljava/lang/String;");
+            setGender.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "gender", getDescriptor(String.class));
             setGender.visitInsn(RETURN);
             Label label1 = new Label();
             setGender.visitLabel(label1);
             setGender.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setGender.visitLocalVariable("gender", "Ljava/lang/String;", null, label0, label1, 1);
+            setGender.visitLocalVariable("gender", getDescriptor(String.class), null, label0, label1, 1);
             setGender.visitMaxs(2, 2);
             setGender.visitEnd();
         }
         {
-            MethodVisitor getAge = user.visitMethod(ACC_PUBLIC, "getAge", "()Ljava/lang/Integer;", null, null);
+            MethodVisitor getAge = user.visitMethod(ACC_PUBLIC, "getAge", getMethodDescriptor(getType(Integer.class)), null, null);
             getAge.visitCode();
             Label label0 = new Label();
             getAge.visitLabel(label0);
             getAge.visitVarInsn(ALOAD, 0);
-            getAge.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "age", "Ljava/lang/Integer;");
+            getAge.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "age", getDescriptor(Integer.class));
             getAge.visitInsn(ARETURN);
             Label label1 = new Label();
             getAge.visitLabel(label1);
@@ -143,28 +144,28 @@ public class GenerateClass {
             getAge.visitEnd();
         }
         {
-            MethodVisitor setAge = user.visitMethod(ACC_PUBLIC, "setAge", "(Ljava/lang/Integer;)V", null, null);
+            MethodVisitor setAge = user.visitMethod(ACC_PUBLIC, "setAge", getMethodDescriptor(VOID_TYPE, getType(Integer.class)), null, null);
             setAge.visitCode();
             Label label0 = new Label();
             setAge.visitLabel(label0);
             setAge.visitVarInsn(ALOAD, 0);
             setAge.visitVarInsn(ALOAD, 1);
-            setAge.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "age", "Ljava/lang/Integer;");
+            setAge.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "age", getDescriptor(Integer.class));
             setAge.visitInsn(RETURN);
             Label label1 = new Label();
             setAge.visitLabel(label1);
             setAge.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setAge.visitLocalVariable("age", "Ljava/lang/Integer;", null, label0, label1, 1);
+            setAge.visitLocalVariable("age", getDescriptor(Integer.class), null, label0, label1, 1);
             setAge.visitMaxs(2, 2);
             setAge.visitEnd();
         }
         {
-            MethodVisitor getPhone = user.visitMethod(ACC_PUBLIC, "getPhone", "()Ljava/lang/String;", null, null);
+            MethodVisitor getPhone = user.visitMethod(ACC_PUBLIC, "getPhone", getMethodDescriptor(getType(String.class)), null, null);
             getPhone.visitCode();
             Label label0 = new Label();
             getPhone.visitLabel(label0);
             getPhone.visitVarInsn(ALOAD, 0);
-            getPhone.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "phone", "Ljava/lang/String;");
+            getPhone.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "phone", getDescriptor(String.class));
             getPhone.visitInsn(ARETURN);
             Label label1 = new Label();
             getPhone.visitLabel(label1);
@@ -173,28 +174,28 @@ public class GenerateClass {
             getPhone.visitEnd();
         }
         {
-            MethodVisitor setPhone = user.visitMethod(ACC_PUBLIC, "setPhone", "(Ljava/lang/String;)V", null, null);
+            MethodVisitor setPhone = user.visitMethod(ACC_PUBLIC, "setPhone", getMethodDescriptor(VOID_TYPE, getType(String.class)), null, null);
             setPhone.visitCode();
             Label label0 = new Label();
             setPhone.visitLabel(label0);
             setPhone.visitVarInsn(ALOAD, 0);
             setPhone.visitVarInsn(ALOAD, 1);
-            setPhone.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "phone", "Ljava/lang/String;");
+            setPhone.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "phone", getDescriptor(String.class));
             setPhone.visitInsn(RETURN);
             Label label1 = new Label();
             setPhone.visitLabel(label1);
             setPhone.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setPhone.visitLocalVariable("phone", "Ljava/lang/String;", null, label0, label1, 1);
+            setPhone.visitLocalVariable("phone", getDescriptor(String.class), null, label0, label1, 1);
             setPhone.visitMaxs(2, 2);
             setPhone.visitEnd();
         }
         {
-            MethodVisitor getSalary = user.visitMethod(ACC_PUBLIC, "getSalary", "()Ljava/math/BigDecimal;", null, null);
+            MethodVisitor getSalary = user.visitMethod(ACC_PUBLIC, "getSalary", getMethodDescriptor(getType(BigDecimal.class)), null, null);
             getSalary.visitCode();
             Label label0 = new Label();
             getSalary.visitLabel(label0);
             getSalary.visitVarInsn(ALOAD, 0);
-            getSalary.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "salary", "Ljava/math/BigDecimal;");
+            getSalary.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "salary", getDescriptor(BigDecimal.class));
             getSalary.visitInsn(ARETURN);
             Label label1 = new Label();
             getSalary.visitLabel(label1);
@@ -203,28 +204,28 @@ public class GenerateClass {
             getSalary.visitEnd();
         }
         {
-            MethodVisitor setSalary = user.visitMethod(ACC_PUBLIC, "setSalary", "(Ljava/math/BigDecimal;)V", null, null);
+            MethodVisitor setSalary = user.visitMethod(ACC_PUBLIC, "setSalary", getMethodDescriptor(VOID_TYPE, getType(BigDecimal.class)), null, null);
             setSalary.visitCode();
             Label label0 = new Label();
             setSalary.visitLabel(label0);
             setSalary.visitVarInsn(ALOAD, 0);
             setSalary.visitVarInsn(ALOAD, 1);
-            setSalary.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "salary", "Ljava/math/BigDecimal;");
+            setSalary.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "salary", getDescriptor(BigDecimal.class));
             setSalary.visitInsn(RETURN);
             Label label1 = new Label();
             setSalary.visitLabel(label1);
             setSalary.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setSalary.visitLocalVariable("salary", "Ljava/math/BigDecimal;", null, label0, label1, 1);
+            setSalary.visitLocalVariable("salary", getDescriptor(BigDecimal.class), null, label0, label1, 1);
             setSalary.visitMaxs(2, 2);
             setSalary.visitEnd();
         }
         {
-            MethodVisitor getAddress = user.visitMethod(ACC_PUBLIC, "getAddress", "()Ljava/lang/String;", null, null);
+            MethodVisitor getAddress = user.visitMethod(ACC_PUBLIC, "getAddress", getMethodDescriptor(getType(String.class)), null, null);
             getAddress.visitCode();
             Label label0 = new Label();
             getAddress.visitLabel(label0);
             getAddress.visitVarInsn(ALOAD, 0);
-            getAddress.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "address", "Ljava/lang/String;");
+            getAddress.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "address", getDescriptor(String.class));
             getAddress.visitInsn(ARETURN);
             Label label1 = new Label();
             getAddress.visitLabel(label1);
@@ -233,28 +234,28 @@ public class GenerateClass {
             getAddress.visitEnd();
         }
         {
-            MethodVisitor setAddress = user.visitMethod(ACC_PUBLIC, "setAddress", "(Ljava/lang/String;)V", null, null);
+            MethodVisitor setAddress = user.visitMethod(ACC_PUBLIC, "setAddress", getMethodDescriptor(VOID_TYPE, getType(String.class)), null, null);
             setAddress.visitCode();
             Label label0 = new Label();
             setAddress.visitLabel(label0);
             setAddress.visitVarInsn(ALOAD, 0);
             setAddress.visitVarInsn(ALOAD, 1);
-            setAddress.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "address", "Ljava/lang/String;");
+            setAddress.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "address", getDescriptor(String.class));
             setAddress.visitInsn(RETURN);
             Label label1 = new Label();
             setAddress.visitLabel(label1);
             setAddress.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setAddress.visitLocalVariable("address", "Ljava/lang/String;", null, label0, label1, 1);
+            setAddress.visitLocalVariable("address", getDescriptor(String.class), null, label0, label1, 1);
             setAddress.visitMaxs(2, 2);
             setAddress.visitEnd();
         }
         {
-            MethodVisitor getCreatedTime = user.visitMethod(ACC_PUBLIC, "getCreatedTime", "()Ljava/util/Date;", null, null);
+            MethodVisitor getCreatedTime = user.visitMethod(ACC_PUBLIC, "getCreatedTime", getMethodDescriptor(getType(Date.class)), null, null);
             getCreatedTime.visitCode();
             Label label0 = new Label();
             getCreatedTime.visitLabel(label0);
             getCreatedTime.visitVarInsn(ALOAD, 0);
-            getCreatedTime.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "createdTime", "Ljava/util/Date;");
+            getCreatedTime.visitFieldInsn(GETFIELD, "pers/darren/bytecode/asm/generating/User", "createdTime", getDescriptor(Date.class));
             getCreatedTime.visitInsn(ARETURN);
             Label label1 = new Label();
             getCreatedTime.visitLabel(label1);
@@ -263,18 +264,18 @@ public class GenerateClass {
             getCreatedTime.visitEnd();
         }
         {
-            MethodVisitor setCreatedTime = user.visitMethod(ACC_PUBLIC, "setCreatedTime", "(Ljava/util/Date;)V", null, null);
+            MethodVisitor setCreatedTime = user.visitMethod(ACC_PUBLIC, "setCreatedTime", getMethodDescriptor(VOID_TYPE, getType(Date.class)), null, null);
             setCreatedTime.visitCode();
             Label label0 = new Label();
             setCreatedTime.visitLabel(label0);
             setCreatedTime.visitVarInsn(ALOAD, 0);
             setCreatedTime.visitVarInsn(ALOAD, 1);
-            setCreatedTime.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "createdTime", "Ljava/util/Date;");
+            setCreatedTime.visitFieldInsn(PUTFIELD, "pers/darren/bytecode/asm/generating/User", "createdTime", getDescriptor(Date.class));
             setCreatedTime.visitInsn(RETURN);
             Label label1 = new Label();
             setCreatedTime.visitLabel(label1);
             setCreatedTime.visitLocalVariable("this", "Lpers/darren/bytecode/asm/generating/User;", null, label0, label1, 0);
-            setCreatedTime.visitLocalVariable("createdTime", "Ljava/util/Date;", null, label0, label1, 1);
+            setCreatedTime.visitLocalVariable("createdTime", getDescriptor(Date.class), null, label0, label1, 1);
             setCreatedTime.visitMaxs(2, 2);
             setCreatedTime.visitEnd();
         }

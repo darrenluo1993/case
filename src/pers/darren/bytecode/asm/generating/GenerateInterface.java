@@ -5,6 +5,7 @@ import org.objectweb.asm.ClassWriter;
 import java.io.FileOutputStream;
 
 import static org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Type.*;
 
 public class GenerateInterface {
 
@@ -19,7 +20,7 @@ public class GenerateInterface {
         // 公共静态常量，常量名为GREATER，类型为基本类型int，常量值为1
         writer.visitField(ACC_PUBLIC | ACC_FINAL | ACC_STATIC, "GREATER", "I", null, 1).visitEnd();
         // 公共抽象方法，方法名compareTo，方法参数类型为java.lang.Object，返回类型为基本类型int
-        writer.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, "compareTo", "(Ljava/lang/Object;)I", null, null).visitEnd();
+        writer.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, "compareTo", getMethodDescriptor(INT_TYPE, getType(Object.class)), null, null).visitEnd();
         writer.visitEnd();
         // 将字节码输出为class文件
         byte[] bytes = writer.toByteArray();
@@ -29,6 +30,6 @@ public class GenerateInterface {
         // 加载生成的Comparable接口
         CustomClassLoader loader = new CustomClassLoader();
         Class<?> clazz = loader.defineClass("pers.darren.bytecode.asm.generating.Comparable", bytes);
-        System.out.println(clazz.toGenericString());
+        System.out.println(clazz.getDeclaredMethod("compareTo", Object.class).getName());
     }
 }
