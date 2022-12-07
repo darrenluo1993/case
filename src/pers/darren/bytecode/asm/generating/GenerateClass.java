@@ -15,7 +15,22 @@ import static org.objectweb.asm.Type.*;
 public class GenerateClass {
 
     public static void main(String[] args) throws Exception {
+        /**
+         * • With new ClassWriter(0) nothing is automatically computed. You
+         *   have to compute yourself the frames and the local variables and operand
+         *   stack sizes.
+         * • With new ClassWriter(ClassWriter.COMPUTE_MAXS) the sizes of the
+         *   local variables and operand stack parts are computed for you. You must
+         *   still call visitMaxs, but you can use any arguments: they will be ignored
+         *   and recomputed. With this option you still have to compute the frames
+         *   yourself.
+         * • With new ClassWriter(ClassWriter.COMPUTE_FRAMES) everything is
+         *   computed automatically. You don’t have to call visitFrame, but you
+         *   must still call visitMaxs (arguments will be ignored and recomputed).
+         */
         ClassWriter user = new ClassWriter(0);
+        // ClassWriter user = new ClassWriter(COMPUTE_MAXS);
+        // ClassWriter user = new ClassWriter(COMPUTE_FRAMES);
         user.visit(V18, ACC_PUBLIC | ACC_FINAL | ACC_SUPER, "pers/darren/bytecode/asm/generating/User", null, "java/lang/Object", null);
         user.visitField(ACC_PRIVATE, "userName", getDescriptor(String.class), null, null).visitEnd();
         user.visitField(ACC_PRIVATE, "fullName", getDescriptor(String.class), null, null).visitEnd();
