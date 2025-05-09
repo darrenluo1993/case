@@ -41,6 +41,7 @@
         <rabbitmq.client.version>5.16.0</rabbitmq.client.version>
         <spring.web.version>5.3.23</spring.web.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
+        <zip4j.version>2.11.5</zip4j.version>
     </properties>
 
     <dependencies>
@@ -200,6 +201,11 @@
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>${javassist.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.lingala.zip4j</groupId>
+            <artifactId>zip4j</artifactId>
+            <version>${zip4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
