@@ -1,6 +1,10 @@
 package pers.darren.crc;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.zip.CRC32;
+
+import static java.lang.Long.toHexString;
 
 /**
  * CRC算法基本实现
@@ -15,9 +19,18 @@ public class CRCExample {
         return crc32.getValue();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String testData = "Hello, Kafka!";
         long crcValue = calculateCRC32(testData.getBytes());
-        System.out.println("CRC32 value: " + Long.toHexString(crcValue));
+        System.out.println("CRC32 value: " + toHexString(crcValue));
+
+        File file = new File("/home/darren/Downloads/dm8_20240920_x86_rh7_64.zip");
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            byte[] fileBytes = fis.readAllBytes();
+            fis.close();
+            long crcValue2 = calculateCRC32(fileBytes);
+            System.out.println("CRC32 value: " + toHexString(crcValue2));
+        }
     }
 }

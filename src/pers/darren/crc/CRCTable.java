@@ -1,5 +1,10 @@
 package pers.darren.crc;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import static java.lang.Integer.toHexString;
+
 /**
  * CRC算法优化实现(查表法)
  *
@@ -27,5 +32,20 @@ public class CRCTable {
             crc = CRC_TABLE[(crc ^ b) & 0xFF] ^ (crc >>> 8);
         }
         return ~crc;
+    }
+
+    public static void main(String[] args) throws Exception {
+        byte[] data = "Hello, Kafka!".getBytes();
+        int crc = calculate(data);
+        System.out.println("CRC: " + toHexString(crc));
+
+        File file = new File("/home/darren/Downloads/dm8_20240920_x86_rh7_64.zip");
+        if (file.exists()) {
+            var fis = new FileInputStream(file);
+            byte[] fileBytes = fis.readAllBytes();
+            fis.close();
+            int crc2 = calculate(fileBytes);
+            System.out.println("CRC: " + toHexString(crc2));
+        }
     }
 }
