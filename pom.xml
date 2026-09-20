@@ -23,6 +23,7 @@
         <commons.lang3.version>3.12.0</commons.lang3.version>
         <commons.net.version>3.8.0</commons.net.version>
         <easyexcel.version>3.1.1</easyexcel.version>
+        <fesod.version>2.0.2-incubating</fesod.version>
         <fastjson.version>2.0.16</fastjson.version>
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.9</hutool.version>
@@ -175,6 +176,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
             <version>${easyexcel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.fesod</groupId>
+            <artifactId>fesod-sheet</artifactId>
+            <version>${fesod.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
