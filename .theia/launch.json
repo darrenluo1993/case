@@ -1,0 +1,566 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Generator",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.aop.Generator",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.aop.Test",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "GenerateClass",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.generating.GenerateClass",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "GenerateInterface",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.generating.GenerateInterface",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Test(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.parsing.Test",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Test(2)",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.transform.example1.Test",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Transformer",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.asm.transform.example1.Transformer",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Attacher",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.classreload.Attacher",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Base",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.classreload.Base",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Generator(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.javassist.aop.Generator",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Test(3)",
+            "request": "launch",
+            "mainClass": "pers.darren.bytecode.javassist.aop.Test",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "GetDate",
+            "request": "launch",
+            "mainClass": "pers.darren.calendar.GetDate",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "ChineseByteConversion",
+            "request": "launch",
+            "mainClass": "pers.darren.charset.ChineseByteConversion",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Loader",
+            "request": "launch",
+            "mainClass": "pers.darren.classloader.demo1.Loader",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Loader(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.classloader.demo2.Loader",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "ListMethod_subList",
+            "request": "launch",
+            "mainClass": "pers.darren.collection.ListMethod_subList",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "ListPagination",
+            "request": "launch",
+            "mainClass": "pers.darren.collection.ListPagination",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "OperateCollection",
+            "request": "launch",
+            "mainClass": "pers.darren.collection.OperateCollection",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "ConstPool",
+            "request": "launch",
+            "mainClass": "pers.darren.constpool.ConstPool",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FileToBase64",
+            "request": "launch",
+            "mainClass": "pers.darren.conversion.FileToBase64",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "ToHexadecimal",
+            "request": "launch",
+            "mainClass": "pers.darren.conversion.ToHexadecimal",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo1",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo1",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo10",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo10",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo11",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo11",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo12",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo12",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo13",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo13",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo14",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo14",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo15",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo15",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo16",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo16",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo17",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo17",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo18",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo18",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo2",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo2",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo3",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo3",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo4",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo4",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo5",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo5",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo6",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo6",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo7",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo7",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo8",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo8",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Demo9",
+            "request": "launch",
+            "mainClass": "pers.darren.datetime.Demo9",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "AbstractFactoryPatternDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.abstractfactory.AbstractFactoryPatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "AbstractFactoryPatternDemo(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.abstractfactory1.AbstractFactoryPatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FactoryPatternDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.factory.FactoryPatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "SimpleFactoryPatternDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.simplefactory.SimpleFactoryPatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Singleton",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.singleton.Singleton",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "SingletonEnum",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.singleton.SingletonEnum",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "StatePatternDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.state.StatePatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "PlayerDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.state.player.PlayerDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "StrategyPatternDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.designpattern.strategy.StrategyPatternDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "RSAEncrypt",
+            "request": "launch",
+            "mainClass": "pers.darren.encrypt.rsa.RSAEncrypt",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "TestRSA",
+            "request": "launch",
+            "mainClass": "pers.darren.encrypt.rsa.TestRSA",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FastJsonCase",
+            "request": "launch",
+            "mainClass": "pers.darren.fastjson.FastJsonCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FTPClientExample",
+            "request": "launch",
+            "mainClass": "pers.darren.ftp.apache_commons_net.FTPClientExample",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FTPDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.ftp.apache_commons_net.FTPDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "SFTPDemo",
+            "request": "launch",
+            "mainClass": "pers.darren.ftp.jcraft_jsch.SFTPDemo",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Sftp",
+            "request": "launch",
+            "mainClass": "pers.darren.ftp.jcraft_jsch.Sftp",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "PinYinTest",
+            "request": "launch",
+            "mainClass": "pers.darren.hutool.pinyin.PinYinTest",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "JacksonCase",
+            "request": "launch",
+            "mainClass": "pers.darren.jackson.JacksonCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "JacksonPropCase",
+            "request": "launch",
+            "mainClass": "pers.darren.jackson.JacksonPropCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "JacksonXMLCase",
+            "request": "launch",
+            "mainClass": "pers.darren.jackson.JacksonXMLCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "CalandriaSort",
+            "request": "launch",
+            "mainClass": "pers.darren.java8.stream.CalandriaSort",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "StreamOperationCase",
+            "request": "launch",
+            "mainClass": "pers.darren.java8.stream.StreamOperationCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Auth0JWTUtils",
+            "request": "launch",
+            "mainClass": "pers.darren.jwt.Auth0JWTUtils",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "JJWTUtils",
+            "request": "launch",
+            "mainClass": "pers.darren.jwt.JJWTUtils",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Consumer",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.activemq.p2p.Consumer",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Producer",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.activemq.p2p.Producer",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Publisher",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.activemq.pubsub.Publisher",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Subscriber",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.activemq.pubsub.Subscriber",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Consumer(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.rabbitmq.Consumer",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Producer(1)",
+            "request": "launch",
+            "mainClass": "pers.darren.mq.rabbitmq.Producer",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "CreateWorkbook",
+            "request": "launch",
+            "mainClass": "pers.darren.poi.CreateWorkbook",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "EasyExcelCase",
+            "request": "launch",
+            "mainClass": "pers.darren.poi.easyexcel.EasyExcelCase",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "LettuceRedisClient",
+            "request": "launch",
+            "mainClass": "pers.darren.redis.lettuce.LettuceRedisClient",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Serializable",
+            "request": "launch",
+            "mainClass": "pers.darren.serialization.Serializable",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "FileSwitchToMultipartFile",
+            "request": "launch",
+            "mainClass": "pers.darren.springmvc.FileSwitchToMultipartFile",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "StringAppendTest",
+            "request": "launch",
+            "mainClass": "pers.darren.string.append.StringAppendTest",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "IDCardOCR",
+            "request": "launch",
+            "mainClass": "pers.darren.tencent.ocr.IDCardOCR",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "Test(4)",
+            "request": "launch",
+            "mainClass": "pers.darren.test.Test",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "VolatileTest",
+            "request": "launch",
+            "mainClass": "pers.darren.volatilee.VolatileTest",
+            "projectName": "case"
+        },
+        {
+            "type": "java",
+            "name": "DOMParser",
+            "request": "launch",
+            "mainClass": "pers.darren.xml.dom.DOMParser",
+            "projectName": "case"
+        }
+    ]
+}
